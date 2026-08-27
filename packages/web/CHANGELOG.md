@@ -1,5 +1,11 @@
 # pmc-utils
 
+## 0.4.0
+
+### Minor Changes
+
+- [#31](https://github.com/continuous-foundation/pmc-utils/pull/31) [`ca2a687add2ba9387d2d11490ad6c2c6d518f9e9`](https://github.com/continuous-foundation/pmc-utils/commit/ca2a687add2ba9387d2d11490ad6c2c6d518f9e9) Thanks [@stevejpurves](https://github.com/stevejpurves)! - Add optional `pi` on manifest grants (`fname`, `lname`, `email`) and emit a nested `<PI>` child element in `bulk_meta.xml` when present.
+
 ## 0.3.1
 
 ### Patch Changes
