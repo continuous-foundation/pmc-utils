@@ -27,10 +27,18 @@ const authorSchema = z.object({
   contactType: z.enum(['reviewer', 'author']),
 });
 
+// Optional PI contact on grant entries for bulk_meta.xml
+const grantPiSchema = z.object({
+  fname: z.string().min(1),
+  lname: z.string().min(1),
+  email: z.string().email(),
+});
+
 // Schema for the 'grants' array
 const grantSchema = z.object({
   funder: z.string().min(1),
   id: z.string().optional(),
+  pi: grantPiSchema.optional(),
 });
 
 // Schema for the 'metadata' object
