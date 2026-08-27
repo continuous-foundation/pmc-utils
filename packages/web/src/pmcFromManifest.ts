@@ -54,7 +54,10 @@ function treeFromManifest(manifest: AAMDepositManifest) {
     ]),
     e('grants', [
       ...manifest.metadata.grants.map((grant) => {
-        return e('grant', { id: grant.id, funder: grant.funder });
+        const piChildren = grant.pi
+          ? [e('PI', { fname: grant.pi.fname, lname: grant.pi.lname, email: grant.pi.email })]
+          : undefined;
+        return e('grant', { id: grant.id, funder: grant.funder }, piChildren);
       }),
     ]),
   ];

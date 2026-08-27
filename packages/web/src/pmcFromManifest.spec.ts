@@ -265,5 +265,61 @@ describe('PMC Manifest Schema and XML Generation', () => {
         'Invalid funder: invalid-funder',
       );
     });
+
+    it('should emit PI child element when pi is provided', () => {
+      const manifestWithPi: AAMDepositManifest = {
+        ...minimalValidManifest,
+        metadata: {
+          ...minimalValidManifest.metadata,
+          grants: [
+            {
+              funder: 'hhmi',
+              id: 'GRANT_Example_A',
+              pi: {
+                fname: 'Alex',
+                lname: 'Alpha',
+                email: 'alex.alpha@example.com',
+              },
+            },
+            {
+              funder: 'nih',
+              id: 'R01HD116750',
+            },
+          ],
+        },
+      };
+
+      const xml = pmcXmlFromManifest(manifestWithPi);
+
+      expect(xml).toContain('id="GRANT_Example_A"');
+      expect(xml).toContain('funder="hhmi"');
+      expect(xml).toContain('<PI fname="Alex" lname="Alpha" email="alex.alpha@example.com"');
+      expect(xml).toContain('id="R01HD116750"');
+      expect(xml).toContain('funder="nih"');
+      expect(xml).not.toMatch(/funder="nih"[\s\S]*<PI/);
+    });
+
+    it('should reject grant pi with invalid email in schema', () => {
+      const invalid = {
+        ...minimalValidManifest,
+        metadata: {
+          ...minimalValidManifest.metadata,
+          grants: [
+            {
+              funder: 'hhmi',
+              id: 'GRANT_Example_B',
+              pi: {
+                fname: 'Blair',
+                lname: 'Beta',
+                email: 'not-an-email',
+              },
+            },
+          ],
+        },
+      };
+
+      const result = AAMDepositManifestSchema.safeParse(invalid);
+      expect(result.success).toBe(false);
+    });
   });
 });
