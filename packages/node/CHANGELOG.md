@@ -1,5 +1,12 @@
 # pmc-node-utils
 
+## 0.4.0
+
+### Patch Changes
+
+- Updated dependencies [[`ca2a687add2ba9387d2d11490ad6c2c6d518f9e9`](https://github.com/continuous-foundation/pmc-utils/commit/ca2a687add2ba9387d2d11490ad6c2c6d518f9e9)]:
+  - pmc-utils@0.4.0
+
 ## 0.3.1
 
 ### Patch Changes
