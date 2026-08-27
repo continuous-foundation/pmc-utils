@@ -1,10 +1,10 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "curvenote/pmc-utils" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "continuous-foundation/pmc-utils" }],
   "commit": false,
   "fixed": [["pmc-node-utils", "pmc-utils"]],
   "linked": [],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []

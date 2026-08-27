@@ -15,6 +15,7 @@ jobs:
       contents: write
       pull-requests: write
       issues: write
+      id-token: write # required for npm trusted publishing (OIDC)
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -25,8 +26,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: 'npm'
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@latest
 
       - name: Install Dependencies
         run: npm ci
@@ -46,4 +50,3 @@ jobs:
           commit: '🚀 Release new versions'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

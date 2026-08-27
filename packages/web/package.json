@@ -29,11 +29,11 @@
     "check-types": "tsc --noEmit"
   },
   "author": "Steve Purves <steve@curvenote.com>",
-  "homepage": "https://github.com/curvenote/pmc-utils",
+  "homepage": "https://github.com/continuous-foundation/pmc-utils",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/curvenote/pmc-utils.git"
+    "url": "git+https://github.com/continuous-foundation/pmc-utils.git"
   },
   "bugs": {
     "url": "https://github.com/curvenote/pmc-utils/issues"
