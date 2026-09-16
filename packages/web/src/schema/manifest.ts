@@ -55,5 +55,6 @@ export const AAMDepositManifestSchema = z.object({
   agency: z.string().min(1).default('hhmi'),
   files: z.array(fileSchema).min(1),
   doi: z.string().optional(),
+  manuscriptId: z.string().min(1).optional(),
   metadata: metadataSchema,
 });

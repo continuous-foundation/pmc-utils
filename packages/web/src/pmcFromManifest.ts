@@ -68,6 +68,7 @@ function treeFromManifest(manifest: AAMDepositManifest) {
       agency: manifest.agency,
       'embargo-months': 0,
       doi: doiUtils.buildUrl(manifest.doi) as string,
+      ...(manifest.manuscriptId ? { 'manuscript-id': manifest.manuscriptId } : {}),
     },
     children,
   );

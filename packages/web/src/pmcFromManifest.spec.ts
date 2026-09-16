@@ -171,9 +171,41 @@ describe('PMC Manifest Schema and XML Generation', () => {
       const result = AAMDepositManifestSchema.safeParse(invalidManifest);
       expect(result.success).toBe(false);
     });
+
+    it('accepts optional manuscriptId on manifest schema', () => {
+      const result = AAMDepositManifestSchema.safeParse({
+        ...validManifest,
+        manuscriptId: 'NIHMS2109555',
+      });
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data.manuscriptId).toBe('NIHMS2109555');
+      }
+    });
+
+    it('rejects empty manuscriptId', () => {
+      const result = AAMDepositManifestSchema.safeParse({
+        ...validManifest,
+        manuscriptId: '',
+      });
+      expect(result.success).toBe(false);
+    });
   });
 
   describe('XML Generation', () => {
+    it('omits manuscript-id when manuscriptId is not set', () => {
+      const xml = pmcXmlFromManifest(validManifest);
+      expect(xml).not.toMatch(/manuscript-id=/);
+    });
+
+    it('includes manuscript-id attribute when manuscriptId is set', () => {
+      const xml = pmcXmlFromManifest({
+        ...validManifest,
+        manuscriptId: 'NIHMS2109555',
+      });
+      expect(xml).toMatch(/manuscript-id="NIHMS2109555"/);
+    });
+
     it('should generate valid PMC XML from complete manifest', () => {
       const xml = pmcXmlFromManifest(validManifest);
 
